@@ -26,6 +26,8 @@ function keyupInputCodi(){
 function buscar() {
   var input, filter, table, tr, td, i, txtValue, iHits;
 
+  document.getElementById("divExtraInfo").style.display = "none";  
+
   iHits = 0;
   input = document.getElementById("myInput");
   filter = normalice(input.value.toUpperCase());
@@ -215,6 +217,8 @@ function dropdownChange(){
   document.getElementById("labelExtra").innerText = "";
   document.getElementById("divExtraInfo").style.display = "none";
 
+  buscar();
+
   if (filterSituacio!="") {
     for (var j = 0; j < arraySituacion.length; j++) {
 
@@ -227,8 +231,6 @@ function dropdownChange(){
     }
     
   }
-
-  buscar();
 }
 
 function pageonload() {
