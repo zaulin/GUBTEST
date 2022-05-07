@@ -144,3 +144,31 @@
   vertical-align: top;
   padding: 8px;
 }
+
+#divExtraInfo {
+  padding-top: 20px;
+  align-content: center;
+}
+
+.tableExtraInfo {
+  margin: auto;
+  width: 90%;
+  border: 1px solid red;
+  border-radius: 10px;
+}
+
+#labelExtra {
+    font-family: calibri;
+    margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+    line-height: 10px;
+}
+
+#labelMesInfo {
+  line-height: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: bold;
+  font-family: calibri;
+}

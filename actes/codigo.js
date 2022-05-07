@@ -183,13 +183,13 @@ function reset(){
   document.getElementById("myInput2").value = "";
 
   document.getElementById("myInputCodi").value = "";
-  
+  document.getElementById("dropdownSituacion").value = "";
 
   buscar();
 }
 
 function normalice(text){
-  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim()
 }
 
 function esconde() {
@@ -201,7 +201,7 @@ function off() {
 }
 
 function tableClick(el) {
-  alert(arraySituacion[0].nombre);
+  //alert(arraySituacion[0].nombre);
 }
 
 function dropdownChange(){
@@ -213,12 +213,16 @@ function dropdownChange(){
   filterSituacio = inputSituacio.value;
 
   document.getElementById("labelExtra").innerText = "";
+  document.getElementById("divExtraInfo").style.display = "none";
 
   if (filterSituacio!="") {
     for (var j = 0; j < arraySituacion.length; j++) {
 
       if (arraySituacion[j].nombre == filterSituacio) {
-        document.getElementById("labelExtra").innerText = arraySituacion[j].extra;
+        if (arraySituacion[j].extra.trim()!="") {
+          document.getElementById("labelExtra").innerText = arraySituacion[j].extra;
+          document.getElementById("divExtraInfo").style.display = "block";  
+        }      
       }
     }
     
@@ -249,14 +253,14 @@ function pageonload() {
 }
 
 function loadSituaciones() {
-  situacion = {nombre: "Abús sexual", actas: "N01,A108,A109,N02,A106,A17,G30", extra: "extra abuso"}
+  situacion = {nombre: "Abús sexual", actas: "N01PL,A108PL,A109PL,N02PL,A106PL,A17,G30PL", extra: "Aquí va la info extra para el abuso"}
   arraySituacion.push(situacion)
-  situacion = {nombre: "Agresió sexual", actas: "N01,A108,A109,N02,A17,G30", extra: ""}
+  situacion = {nombre: "Agresió sexual", actas: "N01PL,A108PL,A109PL,N02PL,A17PL,G30PL", extra: ""}
   arraySituacion.push(situacion)
-  situacion = {nombre: "VG", actas: "N01,A108,A109,A106,N02,N101,A17,G30", extra: "extra VG"}
+  situacion = {nombre: "ViGe", actas: "N01PL,A108PL,A109PL,A106PL,N02PL,N101PL,A17PL,G30PL", extra: "Aquí va la info extra para la ViGe"}
   arraySituacion.push(situacion)
-  situacion = {nombre: "Maltractament d'obra", actas: "N02,N09,A18,N10", extra: "extra obra"}
+  situacion = {nombre: "Maltractament d'obra", actas: "N02PL,N09PL,A18PL,N10PL", extra: "Aquí va la info extra para el maltractament d'obra"}
   arraySituacion.push(situacion)
-  situacion = {nombre: "Robatori amb força", actas: "N01,A108,A109,N02,A31,A56,G30", extra: ""}
+  situacion = {nombre: "Robatori amb força", actas: "N01PL,A108PL,A109PL,N02PL,A31PL,A56PL,G30PL", extra: ""}
   arraySituacion.push(situacion)
 }
