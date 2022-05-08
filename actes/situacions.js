@@ -119,6 +119,21 @@ const jsonData = {
   "situacio": "Danys +400€",
   "actes": "N01,A108,A109,N02,A33,A31,A17",
   "extra": null
+ },
+ {
+  "situacio": "Conduir sota influència alcohol",
+  "actes": "T100",
+  "extra": "Taxa > 0,43"
+ },
+ {
+  "situacio": "Alcoholèmia penal",
+  "actes": "T101,A21,T102,T100,A13,T104",
+  "extra": null
+ },
+ {
+  "situacio": "Negativa proves alcohol\/drogues",
+  "actes": "A101,A21,T102,N01,T100,T104",
+  "extra": null
  }
 ]
 }
