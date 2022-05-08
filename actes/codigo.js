@@ -25,6 +25,7 @@ function keyupInputCodi(){
 
 function buscar() {
   var input, filter, table, tr, td, i, txtValue, iHits;
+  var arrayActas;
 
   document.getElementById("divExtraInfo").style.display = "none";  
 
@@ -73,15 +74,16 @@ function buscar() {
 
     for (var j = 0; j < arraySituacion.length; j++) {
 
-      if (arraySituacion[j].nombre == filterSituacio) {
+      if (arraySituacion[j].situacio == filterSituacio) {
         
-          
+          arrayActas = arraySituacion[j].actes.split(',');
+          console.log(arrayActas); 
           for (var i = 0; i < tr.length; i++) {
             hit = 0;
             tdCodi = tr[i].getElementsByTagName("td")[0];
             if (tdCodi) {
               txtCodi = normalice(tdCodi.textContent || tdCodi.innerText)
-              if (arraySituacion[j].actas.indexOf(txtCodi) > -1) {
+              if (arrayActas.includes(txtCodi) || arrayActas.includes(txtCodi.substring(0, txtCodi.length - 2)) ) {
                 hit = 1;
               } else {
                 hit = 0;
@@ -222,7 +224,7 @@ function dropdownChange(){
   if (filterSituacio!="") {
     for (var j = 0; j < arraySituacion.length; j++) {
 
-      if (arraySituacion[j].nombre == filterSituacio) {
+      if (arraySituacion[j].situacio == filterSituacio) {
         if (arraySituacion[j].extra.trim()!="") {
           document.getElementById("labelExtra").innerText = arraySituacion[j].extra;
           document.getElementById("divExtraInfo").style.display = "block";  
@@ -234,6 +236,7 @@ function dropdownChange(){
 }
 
 function pageonload() {
+
   var version, fecha, situacion;
   version = "0.9"
   fecha = "23/04/2022"
@@ -246,7 +249,7 @@ function pageonload() {
   for (var i = 0; i < arraySituacion.length; i++) {
 
     var option = document.createElement('option');
-    option.text = option.value = arraySituacion[i].nombre;
+    option.text = option.value = arraySituacion[i].situacio;
     select.add(option);
 
   }
@@ -255,14 +258,7 @@ function pageonload() {
 }
 
 function loadSituaciones() {
-  situacion = {nombre: "Abús sexual", actas: "N01PL,A108PL,A109PL,N02PL,A106PL,A17,G30PL", extra: "Aquí va la info extra para el abuso"}
-  arraySituacion.push(situacion)
-  situacion = {nombre: "Agresió sexual", actas: "N01PL,A108PL,A109PL,N02PL,A17PL,G30PL", extra: ""}
-  arraySituacion.push(situacion)
-  situacion = {nombre: "ViGe", actas: "N01PL,A108PL,A109PL,A106PL,N02PL,N101PL,A17PL,G30PL", extra: "Aquí va la info extra para la ViGe"}
-  arraySituacion.push(situacion)
-  situacion = {nombre: "Maltractament d'obra", actas: "N02PL,N09PL,A18PL,N10PL", extra: "Aquí va la info extra para el maltractament d'obra"}
-  arraySituacion.push(situacion)
-  situacion = {nombre: "Robatori amb força", actas: "N01PL,A108PL,A109PL,N02PL,A31PL,A56PL,G30PL", extra: ""}
-  arraySituacion.push(situacion)
+  for (var i=0; i< jsonData.situacions.length; i++) {
+     arraySituacion.push(jsonData.situacions[i])
+  }
 }
