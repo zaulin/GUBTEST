@@ -77,7 +77,6 @@ function buscar() {
       if (arraySituacion[j].situacio == filterSituacio) {
         
           arrayActas = arraySituacion[j].actes.split(',');
-          console.log(arrayActas); 
           for (var i = 0; i < tr.length; i++) {
             hit = 0;
             tdCodi = tr[i].getElementsByTagName("td")[0];
@@ -225,9 +224,11 @@ function dropdownChange(){
     for (var j = 0; j < arraySituacion.length; j++) {
 
       if (arraySituacion[j].situacio == filterSituacio) {
-        if (arraySituacion[j].extra.trim()!="") {
-          document.getElementById("labelExtra").innerText = arraySituacion[j].extra;
-          document.getElementById("divExtraInfo").style.display = "block";  
+        if (arraySituacion[j].extra) {
+          if (arraySituacion[j].extra.trim()!="") {
+            document.getElementById("labelExtra").innerText = arraySituacion[j].extra;
+            document.getElementById("divExtraInfo").style.display = "block";  
+          }
         }      
       }
     }
@@ -243,6 +244,13 @@ function pageonload() {
   //document.getElementById("version").innerText = "v.0.9"
   document.getElementById("fecha").innerText = "v." + version + " - " + fecha;
 
+  document.getElementById("myInput").value = "";
+  document.getElementById("myInput2").value = "";
+  document.getElementById("dropdownSituacion").value = "";
+  document.getElementById("labelExtra").innerText =  "";
+  document.getElementById("myInputCodi").value = "";
+
+
   loadSituaciones();
 
   select = document.getElementById("dropdownSituacion");
@@ -254,6 +262,36 @@ function pageonload() {
 
   }
 
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    tdCodi = tr[i].getElementsByTagName("td")[0];
+    if (tdCodi) {
+      switch(tdCodi.innerText.substring(0,1)) {
+        case "N":
+          // code block
+          tr[i].style.backgroundColor = "#fff2f7";
+          break;
+        case "A":
+          // code block
+          tr[i].style.backgroundColor = "#f7fff2";
+          break;
+        case "D":
+          // code block
+          tr[i].style.backgroundColor = "#f2fffd";
+        case "T":
+          // code block
+          tr[i].style.backgroundColor = "#fdf2ff";
+        case "G":
+          // code block  
+          tr[i].style.backgroundColor = "#f2f5ff"; 
+        default:
+          // code block
+      }
+    }
+
+    
+  }
   buscar();
 }
 
