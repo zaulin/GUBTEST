@@ -57,7 +57,7 @@ const jsonData = {
  },
  {
   "situacio": "Apropiació indeguda +400€",
-  "actes": "N01,A108",
+  "actes": "N01,A108,A109",
   "extra": "Si l'autor s'ha trobat l'objecte sempre serà un delicte lleu independentment del valor de l'objecte."
  },
  {
