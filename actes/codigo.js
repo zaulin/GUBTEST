@@ -390,16 +390,25 @@ function pageonload() {
           trResta[i].style.backgroundColor = "#f2fffd";
           trAutor[i].style.backgroundColor = "#f2fffd";
           trPerjudicat[i].style.backgroundColor = "#f2fffd";
+          break;
         case "T":
           // code block
-          trResta[i].style.backgroundColor = "#fdf2ff";
-          trAutor[i].style.backgroundColor = "#fdf2ff";
-          trPerjudicat[i].style.backgroundColor = "#fdf2ff";
+          trResta[i].style.backgroundColor = "#f3f2ff";
+          trAutor[i].style.backgroundColor = "#f3f2ff";
+          trPerjudicat[i].style.backgroundColor = "#f3f2ff";
+          break;
         case "G":
           // code block  
           trResta[i].style.backgroundColor = "#f2f5ff";
           trAutor[i].style.backgroundColor = "#f2f5ff";
           trPerjudicat[i].style.backgroundColor = "#f2f5ff"; 
+          break;
+        case "I":
+          // code block  
+          trResta[i].style.backgroundColor = "#fffff2";
+          trAutor[i].style.backgroundColor = "#fffff2";
+          trPerjudicat[i].style.backgroundColor = "#fffff2"; 
+          break;
         default:
           // code block
       }
