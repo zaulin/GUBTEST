@@ -38,8 +38,8 @@ const jsonData = {
  {
   "situacio": "Usurpació (okupes)",
   "actes autor": "N09",
-  "actes perjudicat": "N02,A31",
-  "actes resta": "G133",
+  "actes perjudicat": "N02",
+  "actes resta": "G133,A31",
   "extra": "Si es tracta d'un edifici públic: GUB - UI\nSi es tracta d'un edifici privat: CME"
  },
  {

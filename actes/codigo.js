@@ -1,4 +1,10 @@
+const version = "0.9";
+const fecha = "08/05/2022";
 const arraySituacion = [];
+
+function clickBack() {
+  window.open('../index.html', "_self")
+}
 
 function keyupInput1(){
   document.getElementById("myInputCodi").value = "";
@@ -156,8 +162,8 @@ function buscar() {
   inputSituacio = document.getElementById("dropdownSituacion");
   txtFilterSituacio = inputSituacio.value;
 
-  logic = document.getElementById("button");
-  operator = logic.innerText;
+  //logic = document.getElementById("button");
+  //operator = logic.innerText;
 
   table = document.getElementById("tableResta");
   tr = table.getElementsByTagName("tr");
@@ -214,7 +220,14 @@ function buscar() {
             }  
           } else {
           
+              if (txtValue.toUpperCase().indexOf(filter) > -1 && txtValue.toUpperCase().indexOf(filter2) > -1) {
+                hit = 1
+              } else {
+                hit = 0;
+              }  
+
             //miramos el operador
+            /*
             if (operator == "i") {
               //operador AND
               if (txtValue.toUpperCase().indexOf(filter) > -1 && txtValue.toUpperCase().indexOf(filter2) > -1) {
@@ -231,6 +244,7 @@ function buscar() {
                 hit = 0;
               }  
             }
+            */
           }
 
         if (hit==1) {
@@ -269,7 +283,7 @@ function changeButton(){
 }
 
 function reset(){
-  document.getElementById("button").innerText = "i";
+  //document.getElementById("button").innerText = "i";
 
   
   document.getElementById("myInput").value = "";
@@ -329,10 +343,6 @@ function dropdownChange(){
 
 function pageonload() {
 
-  var version, fecha, situacion;
-  version = "0.9"
-  fecha = "08/05/2022"
-  //document.getElementById("version").innerText = "v.0.9"
   document.getElementById("fecha").innerText = "v." + version + " - " + fecha;
 
   document.getElementById("myInput").value = "";
