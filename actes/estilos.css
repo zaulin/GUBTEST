@@ -25,6 +25,11 @@
     color:  #ffffff;
 }
 
+#dropdownSituacion {
+  font-size: 16px;
+  font-family: calibri;
+}
+
 #fecha {
   text-align: right;
   padding-right: 5px;
