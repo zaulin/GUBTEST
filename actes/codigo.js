@@ -111,7 +111,7 @@ function filterSituacio() {
     }
 
     if (iHitsResta > 0) {
-      document.getElementById("textResta").style.display = "visible";
+      document.getElementById("textResta").style.display = "block";
       document.getElementById("divTaulaResta").style.display = "block";
     } else {
       document.getElementById("divTaulaResta").style.display = "none";

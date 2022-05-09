@@ -178,8 +178,8 @@ const jsonData = {
  {
   "situacio": "Conduir sota influència alcohol",
   "actes autor": "T100",
-  "actes perjudicat": "T100",
-  "actes resta": "T100",
+  "actes perjudicat": null,
+  "actes resta": null,
   "extra": "Taxa > 0,43"
  },
  {
