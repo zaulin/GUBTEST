@@ -4,6 +4,10 @@ function keyupInput1(){
   document.getElementById("myInputCodi").value = "";
   document.getElementById("dropdownSituacion").value = "";
   document.getElementById("labelExtra").innerText =  "";
+  document.getElementById("divTaulaPerjudicat").style.display = "none";
+  document.getElementById("divTaulaAutor").style.display = "none";
+  document.getElementById("textResta").style.display = "none";
+  document.getElementById("divTaulaResta").style.display = "block";
   buscar();
 }
 
@@ -11,6 +15,10 @@ function keyupInput2(){
   document.getElementById("myInputCodi").value = "";
   document.getElementById("dropdownSituacion").value = "";
   document.getElementById("labelExtra").innerText =  "";
+  document.getElementById("divTaulaPerjudicat").style.display = "none";
+  document.getElementById("divTaulaAutor").style.display = "none";
+  document.getElementById("textResta").style.display = "none";
+  document.getElementById("divTaulaResta").style.display = "block";
   buscar();
 }
 
@@ -19,14 +27,120 @@ function keyupInputCodi(){
   document.getElementById("myInput2").value = "";
   document.getElementById("dropdownSituacion").value = "";
   document.getElementById("labelExtra").innerText =  "";
+  document.getElementById("divTaulaPerjudicat").style.display = "none";
+  document.getElementById("divTaulaAutor").style.display = "none";
+  document.getElementById("textResta").style.display = "none";
+  document.getElementById("divTaulaResta").style.display = "block";
   buscar();
 }
 
+function filterSituacio() {
+  var iHits, iHitsAutor, iHitsPerjudicat, iHitsResta;
+  iHits = 0;
+  iHitsAutor = 0;
+  iHitsPerjudicat = 0;
+  iHitsResta = 0;
+
+  inputSituacio = document.getElementById("dropdownSituacion");
+  txtFilterSituacio = inputSituacio.value;
+
+  tableResta = document.getElementById("tableResta");
+  trResta = tableResta.getElementsByTagName("tr");
+
+  tablePerjudicat = document.getElementById("tablePerjudicat");
+  trPerjudicat = tablePerjudicat.getElementsByTagName("tr");
+
+  tableAutor = document.getElementById("tableAutor");
+  trAutor = tableAutor.getElementsByTagName("tr");
+
+  for (var j = 0; j < arraySituacion.length; j++) {
+
+      if (arraySituacion[j].situacio == txtFilterSituacio) {
+        
+          if (arraySituacion[j]["actes autor"]) {
+            arrayActasAutor = arraySituacion[j]["actes autor"].split(',');
+          } else {
+            arrayActasAutor = [];
+          }
+          
+          if (arraySituacion[j]["actes perjudicat"]) {
+            iHitsPerjudicat = iHitsPerjudicat + 1;
+            arrayActasPerjudicat = arraySituacion[j]["actes perjudicat"].split(',');
+          } else {
+            arrayActasPerjudicat = [];
+          }
+
+          if (arraySituacion[j]["actes resta"]) {
+            arrayActasResta = arraySituacion[j]["actes resta"].split(',');
+          } else {
+            arrayActasResta = [];
+          }          
+          
+
+          for (var i = 0; i < trResta.length; i++) {
+            hit = 0;
+            tdCodi = trResta[i].getElementsByTagName("td")[0];
+
+            if (tdCodi) {
+              txtCodi = normalice(tdCodi.textContent || tdCodi.innerText)
+
+              if (arrayActasAutor.includes(txtCodi) || arrayActasAutor.includes(txtCodi.substring(0, txtCodi.length - 2)) ) {
+                trAutor[i].style.display = "";
+                iHitsAutor = iHitsAutor + 1;
+              } else {
+                trAutor[i].style.display = "none";
+              }
+
+              if (arrayActasPerjudicat.includes(txtCodi) || arrayActasPerjudicat.includes(txtCodi.substring(0, txtCodi.length - 2)) ) {
+                trPerjudicat[i].style.display = "";
+                iHitsPerjudicat = iHitsPerjudicat + 1;
+              } else {
+                trPerjudicat[i].style.display = "none";
+              }
+
+              if (arrayActasResta.includes(txtCodi) || arrayActasResta.includes(txtCodi.substring(0, txtCodi.length - 2)) ) {
+                trResta[i].style.display = "";
+                iHitsResta = iHitsResta + 1;
+              } else {
+                trResta[i].style.display = "none";
+              }
+            }
+          }
+
+      }
+    }
+
+    if (iHitsResta > 0) {
+      document.getElementById("textResta").style.display = "visible";
+      document.getElementById("divTaulaResta").style.display = "block";
+    } else {
+      document.getElementById("divTaulaResta").style.display = "none";
+    }
+
+    if (iHitsPerjudicat > 0) {
+      document.getElementById("divTaulaPerjudicat").style.display = "block";
+    } else {
+      document.getElementById("divTaulaPerjudicat").style.display = "none";
+    }
+    
+    if (iHitsAutor > 0) {
+      document.getElementById("divTaulaAutor").style.display = "block";
+    } else {
+      document.getElementById("divTaulaAutor").style.display = "none";
+    }
+    
+    iHits = iHitsResta + iHitsPerjudicat + iHitsAutor;
+  return iHits;
+}
 
 function buscar() {
   var input, filter, table, tr, td, i, txtValue, iHits;
   var arrayActas;
 
+  document.getElementById("divTaulaPerjudicat").style.display = "none";
+  document.getElementById("divTaulaAutor").style.display = "none";
+  document.getElementById("divTaulaResta").style.display = "block";
+  document.getElementById("textResta").style.display = "none";
   document.getElementById("divExtraInfo").style.display = "none";  
 
   iHits = 0;
@@ -40,12 +154,12 @@ function buscar() {
   filterCodi = normalice(inputCodi.value.toUpperCase());
 
   inputSituacio = document.getElementById("dropdownSituacion");
-  filterSituacio = inputSituacio.value;
+  txtFilterSituacio = inputSituacio.value;
 
   logic = document.getElementById("button");
   operator = logic.innerText;
 
-  table = document.getElementById("myTable");
+  table = document.getElementById("tableResta");
   tr = table.getElementsByTagName("tr");
 
   if (filterCodi != "") {
@@ -70,36 +184,10 @@ function buscar() {
       }
     }
 
-  } else if (filterSituacio != "") {
+  } else if (txtFilterSituacio != "") {
 
-    for (var j = 0; j < arraySituacion.length; j++) {
-
-      if (arraySituacion[j].situacio == filterSituacio) {
-        
-          arrayActas = arraySituacion[j].actes.split(',');
-          for (var i = 0; i < tr.length; i++) {
-            hit = 0;
-            tdCodi = tr[i].getElementsByTagName("td")[0];
-            if (tdCodi) {
-              txtCodi = normalice(tdCodi.textContent || tdCodi.innerText)
-              if (arrayActas.includes(txtCodi) || arrayActas.includes(txtCodi.substring(0, txtCodi.length - 2)) ) {
-                hit = 1;
-              } else {
-                hit = 0;
-              }
-
-              if (hit==1) {
-                tr[i].style.display = "";
-                iHits = iHits + 1;
-              } else {
-                tr[i].style.display = "none";
-              }
-
-            }
-          }
-
-      }
-    }
+    iHits = filterSituacio();
+    
   } else {
 
     if (filter == "") {
@@ -154,6 +242,7 @@ function buscar() {
       }     
     }
   }
+
   if (iHits == 1) {
     document.getElementById("hitCounter").innerHTML = iHits + " coincidència." 
   } else {
@@ -161,6 +250,8 @@ function buscar() {
   }
   
 }
+
+
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -213,17 +304,17 @@ function dropdownChange(){
   document.getElementById("myInputCodi").value = "";
 
   inputSituacio = document.getElementById("dropdownSituacion");
-  filterSituacio = inputSituacio.value;
+  txtFilterSituacio = inputSituacio.value;
 
   document.getElementById("labelExtra").innerText = "";
   document.getElementById("divExtraInfo").style.display = "none";
 
   buscar();
 
-  if (filterSituacio!="") {
+  if (txtFilterSituacio!="") {
     for (var j = 0; j < arraySituacion.length; j++) {
 
-      if (arraySituacion[j].situacio == filterSituacio) {
+      if (arraySituacion[j].situacio == txtFilterSituacio) {
         if (arraySituacion[j].extra) {
           if (arraySituacion[j].extra.trim()!="") {
             document.getElementById("labelExtra").innerText = arraySituacion[j].extra;
@@ -262,29 +353,43 @@ function pageonload() {
 
   }
 
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    tdCodi = tr[i].getElementsByTagName("td")[0];
+  tableResta = document.getElementById("tableResta");
+  tableAutor = document.getElementById("tableAutor");
+  tablePerjudicat = document.getElementById("tablePerjudicat");
+  trResta = tableResta.getElementsByTagName("tr");
+  trAutor = tableAutor.getElementsByTagName("tr");
+  trPerjudicat = tablePerjudicat.getElementsByTagName("tr");
+  for (i = 0; i < trResta.length; i++) {
+    tdCodi = trResta[i].getElementsByTagName("td")[0];
     if (tdCodi) {
       switch(tdCodi.innerText.substring(0,1)) {
         case "N":
           // code block
-          tr[i].style.backgroundColor = "#fff2f7";
+          trResta[i].style.backgroundColor = "#fff2f7";
+          trAutor[i].style.backgroundColor = "#fff2f7";
+          trPerjudicat[i].style.backgroundColor = "#fff2f7";
           break;
         case "A":
           // code block
-          tr[i].style.backgroundColor = "#f7fff2";
+          trResta[i].style.backgroundColor = "#f7fff2";
+          trAutor[i].style.backgroundColor = "#f7fff2";
+          trPerjudicat[i].style.backgroundColor = "#f7fff2";
           break;
         case "D":
           // code block
-          tr[i].style.backgroundColor = "#f2fffd";
+          trResta[i].style.backgroundColor = "#f2fffd";
+          trAutor[i].style.backgroundColor = "#f2fffd";
+          trPerjudicat[i].style.backgroundColor = "#f2fffd";
         case "T":
           // code block
-          tr[i].style.backgroundColor = "#fdf2ff";
+          trResta[i].style.backgroundColor = "#fdf2ff";
+          trAutor[i].style.backgroundColor = "#fdf2ff";
+          trPerjudicat[i].style.backgroundColor = "#fdf2ff";
         case "G":
           // code block  
-          tr[i].style.backgroundColor = "#f2f5ff"; 
+          trResta[i].style.backgroundColor = "#f2f5ff";
+          trAutor[i].style.backgroundColor = "#f2f5ff";
+          trPerjudicat[i].style.backgroundColor = "#f2f5ff"; 
         default:
           // code block
       }
