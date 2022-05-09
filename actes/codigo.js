@@ -331,7 +331,7 @@ function pageonload() {
 
   var version, fecha, situacion;
   version = "0.9"
-  fecha = "23/04/2022"
+  fecha = "08/05/2022"
   //document.getElementById("version").innerText = "v.0.9"
   document.getElementById("fecha").innerText = "v." + version + " - " + fecha;
 
