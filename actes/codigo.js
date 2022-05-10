@@ -420,7 +420,30 @@ function pageonload() {
 }
 
 function loadSituaciones() {
+  
+  jsonData.situacions.sort(function (a, b) {
+      return a.grup.localeCompare(b.grup) || a.situacio.localeCompare(b.situacio)
+  });
+
+
   for (var i=0; i< jsonData.situacions.length; i++) {
-     arraySituacion.push(jsonData.situacions[i])
+    arraySituacion.push(jsonData.situacions[i])
   }
+
+    $(function(){
+      var $select = $('#dropdownSituacion');
+      var grupAnterior = "";
+      var group;
+      $.each(arraySituacion, function(){
+          if (grupAnterior == this.grup) {
+
+          } else {
+            group = $('<optgroup label="' + this.grup + '" />');
+          }
+          
+          $('<option />').html(this.situacio).appendTo(group);
+          group.appendTo($select);
+          grupAnterior = this.grup;
+      });
+  });
 }
