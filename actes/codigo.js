@@ -354,14 +354,12 @@ function pageonload() {
 
   loadSituaciones();
 
-  select = document.getElementById("dropdownSituacion");
-  for (var i = 0; i < arraySituacion.length; i++) {
+  decoraTablas();
 
-    var option = document.createElement('option');
-    option.text = option.value = arraySituacion[i].situacio;
-    select.add(option);
+  buscar();
+}
 
-  }
+function decoraTablas() {
 
   tableResta = document.getElementById("tableResta");
   tableAutor = document.getElementById("tableAutor");
@@ -416,11 +414,10 @@ function pageonload() {
 
     
   }
-  buscar();
 }
 
 function loadSituaciones() {
-  
+
   jsonData.situacions.sort(function (a, b) {
       return a.grup.localeCompare(b.grup) || a.situacio.localeCompare(b.situacio)
   });
