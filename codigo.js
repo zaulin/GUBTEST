@@ -1,17 +1,17 @@
 function clickNomenclator(){
-    window.open("nomenclator","_self")
+    window.open("nomenclator/index.html","_self")
 }
 
 function clickActes(){
-    window.open("actes","_self")
+    window.open("actes/index.html","_self")
 }
 
 function clickTrixis(){
-    window.open("trixis","_self")
+    window.open("trixis/index.html","_self")
 }
 
 function clickPermisos(){
-    window.open("permisos","_self")
+    window.open("permisos/index.html","_self")
 }
 
 
