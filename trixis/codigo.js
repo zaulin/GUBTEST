@@ -52,10 +52,53 @@ function reset(){
   buscar();
 }
 
+function esconde() {
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+
+    for (j = 1; j < 3; j++) {
+      td = tr[i].getElementsByTagName("td")[j];
+      th = tr[i].getElementsByTagName("th")[j];
+      if (td) {
+            td.style.display = "none";
+      }
+      if (th) {
+            th.style.display = "none";
+      }  
+    }
+    
+  }
+
+  reset();
+}
+
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+function tableClick(el) {
+  var indice, table, tr, td;
+  indice = $(el).closest('tr').index();
+
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  td = tr[indice + 1].getElementsByTagName("td")
+
+  document.getElementById("popUpCodi").innerHTML = "<strong>" + td[0].innerText + "</strong>"
+  document.getElementById("popUpDataAlta").innerText = td[1].innerText; 
+  document.getElementById("popUpTipus").innerText = td[2].innerText;
+
+  document.getElementById("overlay").style.display = "block";
+}
+
 function normalice(text){
   return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 }
 
 function pageonload() {
   document.getElementById("fecha").innerText = "v." + version + " - " + fecha;
+  esconde();
 }
