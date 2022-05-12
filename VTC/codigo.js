@@ -227,8 +227,8 @@ function pageonload() {
 
   //document.getElementById("myInputCodi").value = "";
 
-  esconde();
+  //esconde();
 
-  buscar();
+  //buscar();
 }
 
