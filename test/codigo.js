@@ -11,8 +11,30 @@ function readTextFile(file, callback) {
 }
 
 function pageonload() {
+
+
+
     readTextFile("test.json", function(text){
         var data = JSON.parse(text); //parse JSON
         console.log(data);
-    });
+/*
+        $("#data").find('tbody')
+            .append($('<tr>')
+                .append($('<td>')
+                    .append($('<img>')
+                        .attr('src', 'img.png')
+                        .text('Image cell')
+            )
+        )
+    );
+*/
+
+        $("#data").find('tbody')
+            .append($('<tr>')
+                .append($('<td>')
+                    .text('Holi')
+                    
+                )
+            );
+        });
 }
