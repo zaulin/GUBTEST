@@ -15,6 +15,7 @@ function clickPermisos(){
 }
 
 function clickVTC(){
+    alert(document.cookie);
     window.open("VTC/index.html","_self")
 }
 
