@@ -19,5 +19,5 @@ function clickVTC(){
 }
 
 function pageonload() {
-
+    document.cookie = "username=John Doe";
 }
