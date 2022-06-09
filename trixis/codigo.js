@@ -62,14 +62,15 @@ function esconde() {
   for (i = 0; i < tr.length; i++) {
 
     //COLOREA
-    tdEstat = tr[i].getElementsByTagName("td")[4];
+    tdEstat = tr[i].getElementsByTagName("td")[2];
 
     if (tdEstat) {
       if (tdEstat.innerHTML != "ACTIU") {
-        tr[i].style.backgroundColor = "#fff2f7";
+        tr[i].style.backgroundColor = "#fc6284";
       }
     }
 
+/*
       td = tr[i].getElementsByTagName("td")[2];
       th = tr[i].getElementsByTagName("th")[2];
       if (td) {
@@ -86,7 +87,7 @@ function esconde() {
       if (th) {
             th.style.display = "none";
       }  
-
+*/
 /*
       td = tr[i].getElementsByTagName("td")[4];
       if (td) {
@@ -95,8 +96,7 @@ function esconde() {
         }
       }
 */
-/*
-    for (j = 2; j < 4; j++) {
+    for (j = 3; j < 10; j++) {
       td = tr[i].getElementsByTagName("td")[j];
       th = tr[i].getElementsByTagName("th")[j];
       if (td) {
@@ -106,7 +106,6 @@ function esconde() {
             th.style.display = "none";
       }  
     }
-    */
   }
 
   reset();
@@ -128,9 +127,23 @@ function tableClick(el) {
 
   document.getElementById("popUpRegistre").innerHTML = "<strong>" + td[0].innerText + "</strong>"
   document.getElementById("popUpSerie").innerHTML = td[1].innerText;
-  document.getElementById("popUpDataAlta").innerText = td[2].innerText; 
-  document.getElementById("popUpTipus").innerText = td[3].innerText;
-  document.getElementById("popUpEmpresa").innerText = td[4].innerText;  
+  document.getElementById("popUpEstat").innerHTML = td[2].innerText;
+
+  if (td[2].innerText == "ACTIU") {
+    rowEstat.style.backgroundColor = "transparent";
+  } else {
+    rowEstat.style.backgroundColor = "#fc6284";
+  }
+
+  document.getElementById("popUpEmpCIF").innerText = td[3].innerText;
+  document.getElementById("popUpEmpNombre").innerText = td[4].innerText;  
+  document.getElementById("popUpEmpDireccion").innerText = td[5].innerText;  
+  document.getElementById("popUpEmpPoblacion").innerText = td[6].innerText;  
+
+  document.getElementById("popUpTipus").innerText = td[7].innerText;  
+  document.getElementById("popUpMarca").innerText = td[8].innerText;  
+  document.getElementById("popUpModel").innerText = td[9].innerText;  
+
   document.getElementById("overlay").style.display = "block";
 }
 
