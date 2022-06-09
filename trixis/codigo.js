@@ -20,10 +20,16 @@ function buscar() {
     for (i = 0; i < tr.length; i++) {
       hit = 0;
       tdCodi = tr[i].getElementsByTagName("td")[0];
+      tdCodi2 = tr[i].getElementsByTagName("td")[1];
       if (tdCodi) {
         txtCodi = normalice(tdCodi.textContent || tdCodi.innerText);
         if (txtCodi.toUpperCase().indexOf(filterCodi) > -1) {
           hit = 1;
+        } else {
+          txtCodi2 = normalice(tdCodi2.textContent || tdCodi2.innerText);
+          if (txtCodi2.toUpperCase().indexOf(filterCodi) > -1) {
+            hit = 1;
+          }
         }
 
         if (hit==1) {
@@ -49,12 +55,48 @@ function reset(){
 }
 
 function esconde() {
+  
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
 
-    for (j = 1; j < 3; j++) {
+    //COLOREA
+    tdEstat = tr[i].getElementsByTagName("td")[4];
+
+    if (tdEstat) {
+      if (tdEstat.innerHTML != "ACTIU") {
+        tr[i].style.backgroundColor = "#fff2f7";
+      }
+    }
+
+      td = tr[i].getElementsByTagName("td")[2];
+      th = tr[i].getElementsByTagName("th")[2];
+      if (td) {
+            td.style.display = "none";
+      }
+      if (th) {
+            th.style.display = "none";
+      }  
+      td = tr[i].getElementsByTagName("td")[3];
+      th = tr[i].getElementsByTagName("th")[3];
+      if (td) {
+            td.style.display = "none";
+      }
+      if (th) {
+            th.style.display = "none";
+      }  
+
+/*
+      td = tr[i].getElementsByTagName("td")[4];
+      if (td) {
+        if (td.innerHTML != "ACTIU") {
+          tr[i].style.backgroundColor = "#fff2f7";
+        }
+      }
+*/
+/*
+    for (j = 2; j < 4; j++) {
       td = tr[i].getElementsByTagName("td")[j];
       th = tr[i].getElementsByTagName("th")[j];
       if (td) {
@@ -64,10 +106,11 @@ function esconde() {
             th.style.display = "none";
       }  
     }
-    
+    */
   }
 
   reset();
+  
 }
 
 
@@ -83,10 +126,11 @@ function tableClick(el) {
   tr = table.getElementsByTagName("tr");
   td = tr[indice + 1].getElementsByTagName("td")
 
-  document.getElementById("popUpCodi").innerHTML = "<strong>" + td[0].innerText + "</strong>"
-  document.getElementById("popUpDataAlta").innerText = td[1].innerText; 
-  document.getElementById("popUpTipus").innerText = td[2].innerText;
-
+  document.getElementById("popUpRegistre").innerHTML = "<strong>" + td[0].innerText + "</strong>"
+  document.getElementById("popUpSerie").innerHTML = td[1].innerText;
+  document.getElementById("popUpDataAlta").innerText = td[2].innerText; 
+  document.getElementById("popUpTipus").innerText = td[3].innerText;
+  document.getElementById("popUpEmpresa").innerText = td[4].innerText;  
   document.getElementById("overlay").style.display = "block";
 }
 
