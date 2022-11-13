@@ -72,7 +72,9 @@
             
         if (id != 'dctree-first') {
             var controls = $('<div></div>').addClass('dctree-controls col-md-12');
-            controls.append($(sAdd + '<a href="javascrip:;" class="dctree-prev"><- Anterior </a>'));
+            controls.append($('<p href="javascrip: function(){getPrevCard()};" class="dctree-prev"><- Anterior </p>'));
+            //controls.append($(sAdd + '<p onClick="javascrip: function back(){getPrevCard()};" class="dctree-prev"><- Anterior </p>'));
+            
             container.append(controls);
         }
         
@@ -88,6 +90,14 @@
         showCard(nextCard);
     }
     
+    /*
+    function getPrevCard()
+    {
+        var previousCard = prevCard[prevCard.length - 1]    
+        showCard(previousCard);
+    }
+    */
+
     function showCard(id, backward)
     {
         var nextCard = $("#" + id);
