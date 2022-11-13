@@ -1,12 +1,11 @@
 {
-	"message": "<div style='color:green;'>Selecciona una opción</div>",
 	"decisions":  
 	[{
 		"answer":"PÉRDIDA DE VIGENCIA POR PÉRDIDA DE TOTALIDAD DE PUNTOS (JPT)",
 		"decisions":
 		[{
 			"answer":"CONDUCE DURANTE EL PERIODO DE PÉRDIDA DE VIGENCIA",
-			"message":"Instrucción de diligencias al artículo 384 del código penal (Juicio Ordinario), IMPORTANTE En caso de no haberlo obtenido nunca será preciso identificar al propietario o titular del vehículo y citarlo al menos como testigo por los hechos para misma fecha y hora que el conductor investigado. En caso de imposibilidad dejar constancia de los motivos. - Se le formulará denuncia por infracción muy grave al art. 1.1.5A RGCon, por el hecho, Conducir careciendo de autorización administrativa correspondiente, NO SE LE ENTREGA COPIA DE LA MISMA, En el apartado OBSERVACIONES el agente indicará expresamente que “Carece de Permiso de conducir. Se instruye diligencias Nº XXX remitidas al Juzgado XXX”. (Tras haber perdido la vigencia del mismo por sentencia judicial firme, por plazo superior a 2 años y no haber realizado y superado con aprovechamiento el Curso de sensibilización y reeducación y no haber superado las pruebas establecidas, tal como indica la Disposición Adicional 13 (hasta el 30-01-2016) o el art 73 LSV (desde el 31 -Ol201 6) Se inmoviliza el vehículo)"
+			"message":"Instrucción de diligencias al artículo 384 del código penal (Juicio Ordinario)<br><br><b>IMPORTANTE</b> En caso de no haberlo obtenido nunca será preciso identificar al propietario o titular del vehículo y citarlo al menos como testigo por los hechos para misma fecha y hora que el conductor investigado. En caso de imposibilidad dejar constancia de los motivos.<br><br>- Se le formulará denuncia por infracción muy grave al art. 1.1.5A RGCon, por el hecho, Conducir careciendo de autorización administrativa correspondiente, <b>NO SE LE ENTREGA COPIA DE LA MISMA</b>, En el apartado OBSERVACIONES el agente indicará expresamente que “Carece de Permiso de conducir. Se instruye diligencias Nº XXX remitidas al Juzgado XXX”. (Tras haber perdido la vigencia del mismo por sentencia judicial firme, por plazo superior a 2 años y no haber realizado y superado con aprovechamiento el Curso de sensibilización y reeducación y no haber superado las pruebas establecidas, tal como indica la Disposición Adicional 13 (hasta el 30-01-2016) o el art 73 LSV (desde el 31 -Ol201 6) Se inmoviliza el vehículo)"
 		},
 		{
 			"answer":"CONDUCE FINALIZADO PERIODO DE PÉRDIDA DE VIGENCIA",
