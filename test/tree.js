@@ -33,13 +33,17 @@
         var container = $('<div></div>')
             .addClass(settings.cardClass)
             .addClass('col-xs-12');
-        var message = $('<div></div>').addClass(settings.messageClass).append(data.message);
-        container.append(message);
-        
+
+        if (data.message) {
+            var message = $('<div></div>').addClass(settings.messageClass).append(data.message);
+            container.append(message);
+        }
+
         if (id != null) {
             container.attr('id', id)
         }
         
+        sAdd = ""
         if (typeof data.decisions != "undefined") {
             var decisions = $('<div></div>').addClass('dctree-decisions');
             for(var i=0; data.decisions.length > i; i++) {
@@ -61,12 +65,14 @@
                 renderRecursive(decision, elem, genId);
             }
             container.append(decisions);
+
+            sAdd = "<br><br>"
         }
         
             
         if (id != 'dctree-first') {
             var controls = $('<div></div>').addClass('dctree-controls col-md-12');
-            controls.append($('<br><br><a href="javascrip:;" class="dctree-prev"><- Anterior </a>'));
+            controls.append($(sAdd + '<a href="javascrip:;" class="dctree-prev"><- Anterior </a>'));
             container.append(controls);
         }
         
