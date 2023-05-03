@@ -1,8 +1,21 @@
 const version = "0.9";
-const fecha = "23/04/2022";
+const fecha = "19/04/2023";
 const arrayDenuncies = [];
 const csvData = [];
 const colorBookmark = "#fffee6";
+
+const iColCodi = 1;
+const iColDesc = 2;
+const iColNormativa = 3;
+const iColArticle = 4;
+const iColMesuresAlt = 5;
+const iColPunts = 6;
+const iColImport = 7;
+const iColImportDesc = 8;
+const iColFamilia = 9;
+const iColIntervencio = 10;
+const iColCondicional = 11;
+const iColAbits = 12;
 
 var selectedNum = "";
 var selectedTr = -1;
@@ -12,7 +25,6 @@ function clickBack() {
 }
 
 function reset(){
-  document.getElementById("myInputCodi").value = "";
   document.getElementById("myInput").value = "";
   document.getElementById("myInput2").value = "";
   document.getElementById("dropdownDenuncies").value = "";
@@ -20,12 +32,16 @@ function reset(){
 }
 
 function keyupInput1(){
-  document.getElementById("myInputCodi").value = "";
   buscar();
 }
 
 function keyupInput2(){
-  document.getElementById("myInputCodi").value = "";
+  buscar();
+}
+
+function dropdownChange() {
+  document.getElementById("myInput").value = "";
+  document.getElementById("myInput2").value = "";
   buscar();
 }
 
@@ -50,9 +66,6 @@ function buscar() {
   input2 = document.getElementById("myInput2");
   filter2 = normalice(input2.value.toUpperCase());
 
-  inputCodi = document.getElementById("myInputCodi");
-  filterCodi = normalice(inputCodi.value.toUpperCase());
-
   inputDenuncies = document.getElementById("dropdownDenuncies");
   txtFilterDenuncies = inputDenuncies.value;
 
@@ -70,30 +83,6 @@ function buscar() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
 
-  if (filterCodi != "") {
-    document.getElementById("myInput").value = "";
-    document.getElementById("myInput2").value = "";
-
-    for (i = 0; i < tr.length; i++) {
-      hit = 0;
-      tdCodi = tr[i].getElementsByTagName("td")[1];
-      if (tdCodi) {
-        txtCodi = normalice(tdCodi.textContent || tdCodi.innerText);
-        if (txtCodi.toUpperCase().indexOf(filterCodi) > -1) {
-          hit = 1;
-        }
-
-        if (hit==1) {
-          tr[i].style.display = "";
-          iHits = iHits + 1;
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
-
-  } else {
-
     if (filter == "") {
       if (filter2 != "") {
         filter = filter2;
@@ -101,32 +90,39 @@ function buscar() {
       }
     }
 
-
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[2];
+      td = tr[i].getElementsByTagName("td")[iColDesc-1];
       if (td) {
         
         hit = 0;
 
         txtValue = normalice(td.textContent || td.innerText);
-  
+
+        tdCodi = tr[i].getElementsByTagName("td")[iColCodi-1];
+        txtCodi = normalice(tdCodi.textContent || tdCodi.innerText);
+        
+        tdArt =  tr[i].getElementsByTagName("td")[iColArticle-1];
+        txtArt = normalice(tdArt.textContent || tdArt.innerText).replace(/\s/g, '')
+
           if (arrayFiltreDenuncies) {
-            tdCodi = tr[i].getElementsByTagName("td")[1];
-            txtCodi = normalice(tdCodi.textContent || tdCodi.innerText);
-            
+
             if (arrayFiltreDenuncies.includes(txtCodi)) {
               if (filter2 == "") {
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1 || txtCodi.toUpperCase().startsWith(filter)) {
                   hit = 1
                 } else {
                   hit = 0;
                 }  
+
               } else {
               
-                  if (txtValue.toUpperCase().indexOf(filter) > -1 && txtValue.toUpperCase().indexOf(filter2) > -1) {
-                    hit = 1
-                  } else {
-                    hit = 0;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1 || txtCodi.toUpperCase().startsWith(filter)) {
+                    if (txtValue.toUpperCase().indexOf(filter2) > -1 || txtCodi.toUpperCase().startsWith(filter2)) {
+                      hit = 1
+                    } else {
+                      hit = 0;
+                    }
                   } 
               }
 
@@ -134,16 +130,20 @@ function buscar() {
           } else {
 
             if (filter2 == "") {
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              if (txtValue.toUpperCase().indexOf(filter) > -1 || txtCodi.toUpperCase().startsWith(filter) || txtArt.toUpperCase().startsWith(filter)) {
                 hit = 1
-              } else {
+              } else  {
                 hit = 0;
               }  
             } else {
             
-                if (txtValue.toUpperCase().indexOf(filter) > -1 && txtValue.toUpperCase().indexOf(filter2) > -1) {
-                  hit = 1
-                } else {
+                if (txtValue.toUpperCase().indexOf(filter) > -1 || txtCodi.toUpperCase().startsWith(filter) || txtArt.toUpperCase().startsWith(filter)) {
+                    if (txtValue.toUpperCase().indexOf(filter2) > -1 || txtCodi.toUpperCase().startsWith(filter2) || txtArt.toUpperCase().startsWith(filter2)) {
+                      hit = 1
+                    } else {
+                      hit = 0
+                    }
+                } else {     
                   hit = 0;
                 } 
             }
@@ -160,7 +160,7 @@ function buscar() {
         }
       }     
     }
-  }
+  
   if (iHits == 1) {
     document.getElementById("hitCounter").innerHTML = iHits + " coincidència." 
   } else {
@@ -198,18 +198,10 @@ function esconde() {
       }  
     }
     
+    //no contamos la cabecera
+    if (i>0) {iHits = iHits + 1}
 
-    iHits = iHits + 1;
-    td = tr[i].getElementsByTagName("td")[0];
-    th = tr[i].getElementsByTagName("th")[0];
-    if (td) {
-          td.style.display = "none";
-    }
-    if (th) {
-          th.style.display = "none";
-    }
-
-    for (j = 3; j < 14; j++) {
+    for (j = 2; j < 12; j++) {
       td = tr[i].getElementsByTagName("td")[j];
       th = tr[i].getElementsByTagName("th")[j];
       if (td) {
@@ -259,6 +251,9 @@ function bookmarkClick(){
   
 }
 
+//==========================================
+//========== TABLE CLICK ===================
+//==========================================
 
 function tableClick(el) {
 
@@ -274,11 +269,25 @@ function tableClick(el) {
   selectedNum = td[1].innerText;
   selectedTr = indice;
 
-  document.getElementById("popUpNum").innerHTML = td[1].innerText;
-  document.getElementById("popUpDesc").innerHTML = td[2].innerText;
-  document.getElementById("popUpNormativa").innerText = td[3].innerText + " - Article: " + td[4].innerText;
+  document.getElementById("popUpNum").innerHTML = td[iColCodi - 1].innerText;
+  document.getElementById("popUpDesc").innerHTML = td[iColDesc - 1].innerText;
+  document.getElementById("popUpNormativa").innerText = td[iColNormativa - 1].innerText + " - Article: " + td[iColArticle - 1].innerText;
   //document.getElementById("popUpArticle").innerText = td[4].innerText;
-  document.getElementById("popUpImporte").innerText = td[5].innerText + "€ / " + td[6].innerText + "€";
+  if (isNumeric(td[iColImport - 1].innerText)) {
+    sImport = parseInt(td[iColImport - 1].innerText).toString();
+    sImportDesc = parseInt(td[iColImportDesc - 1].innerText).toString();
+  } else {
+    sImport = "-";
+    sImportDesc = "-";
+  }
+  document.getElementById("popUpImporte").innerText = sImport + " € / " + sImportDesc + " €";
+
+  sPunts = "-";
+  if (isNumeric(td[iColPunts-1].innerText)) {
+    sPunts = td[iColPunts-1].innerText 
+  }
+  document.getElementById("popUpPunts").innerText = sPunts
+  /*
   if (td[7].innerText == "S") {
     document.getElementById("cboxRetirada").checked = true;
   } else {
@@ -289,18 +298,20 @@ function tableClick(el) {
   } else {
     document.getElementById("cboxPunts").checked = false;
   }
-  if (td[9].innerText == "1") {
+  */
+
+  if (td[iColCondicional-1].innerText == "1") {
     document.getElementById("cboxCondicional").checked = true;
   } else {
     document.getElementById("cboxCondicional").checked = false;
   }
-  if (td[13].innerText == "S") {
+  if (td[iColIntervencio-1].innerText == "S") {
     document.getElementById("cboxIntervencio").checked = true;
   } else {
     document.getElementById("cboxIntervencio").checked = false;
   }
 
-  document.getElementById("popUpAbits").innerText = td[10].innerText;
+  document.getElementById("popUpAbits").innerText = td[iColAbits-1].innerText;
   
   //check si es bookmark
   estrella = document.getElementById("estrella");
@@ -315,12 +326,14 @@ function tableClick(el) {
 
 
 function pageonload() {
+
   document.getElementById("fecha").innerText = "v." + version + " - " + fecha;
 
   esconde();
   loadDenuncias();
 
   document.getElementById("loading").style.display = "none";
+
 }
 
 function loadDenuncias() {
@@ -391,12 +404,6 @@ function loadDenuncias() {
 
 }
 
-function dropdownChange() {
-  document.getElementById("myInputCodi").value = "";
-
-  buscar();
-
-}
 
 function isBookmark(num) {
   strBookmark = getCookie("bookmarks")
@@ -457,4 +464,10 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+
+function isNumeric(str) {
+  if (typeof str != "string") return false // we only process strings!  
+  return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+         !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 }
