@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GAV</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+    type="text/javascript"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYXV6ZJSGC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MYXV6ZJSGC');
+    </script>
+
+    <script src="codigo.js"></script>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../../css/loader.css">
+    <link rel="stylesheet" href="../../css/cabecera.css">
+    <link rel="stylesheet" href="../../css/taules.css">
+    <link rel="stylesheet" href="../../css/textos.css">
+
+    <link rel="shortcut icon" href="https://zaulin.github.io/GUB/img/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://zaulin.github.io/GUB/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://zaulin.github.io/GUB/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://zaulin.github.io/GUB/img/icons/favicon-16x16.png">
+    <link rel="manifest" href="https://zaulin.github.io/GUB/img/icons/site.webmanifest">
+    <link rel="mask-icon" href="https://zaulin.github.io/GUB/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#064a9d">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Cache-Control" content="no-store" /> 
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+
+<meta name="apple-mobile-web-app-title" content="GUB">
+
+</head>
+<body onload="pageonload()" style="margin: 0;padding: 0;">
+
+
+
+
+    <div id="loadingBlack">
+      <div id="loadingIn">
+        <div class="loader">
+        
+        </div>
+      </div>
+    </div>
+    
+  <div style="background-color: white; margin-bottom: 10px;">
+    <table class="cabecera">
+      <tr>
+        <td id="version" class="back" onclick="clickBack()"><img src="../../img/back.png" height="26px" style="vertical-align: middle;"></td>
+        <td id="titulo" class="titulo">SAV</td>
+        <td id="fecha" class="fecha"></td>
+      </tr>
+    </table>
+  </div>
+
+<div style="margin-left: 5px; margin-right: 5px; text-align: center;" width="100%">
+ <br>
+
+
+ <table align="center" >
+    <tr>
+      <td align="center">
+        <table onclick="clickVige()" class="tableBoton"  >
+          <tr class="trImagen" ><td align="center"><img src="../../img/actuacions/vige.png" height="50px"></td></tr>
+          <tr class="trTexto"><td align="center" class="ButtonText">ViGe</td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td align="center">
+        <table onclick="clickVido()" class="tableBoton"  >
+          <tr class="trImagen" ><td align="center"><img src="../../img/actuacions/vido.png" height="50px"></td></tr>
+          <tr class="trTexto"><td align="center" class="ButtonText">ViDo</td></tr>
+        </table>
+      </td>
+    </tr>
+
+</table>
+<br><br>
+
+ </div>
+
+<!----------------------------------------------------------->
+<!------------------ DIV EXTRA INFO ------------------------->
+<!----------------------------------------------------------->
+  <div id="divExtraInfo" class="divExtraInfo">
+    <table class="tableExtraInfo" align="center">
+      <tr><td>
+        <p id="labelMesInfo" class="labelMesInfo">Si son creuades (ViGe-ViDo): </p>
+        <p id="labelExtra" class="labelExtra">
+        Competència de la URIV
+        <p id="labelMesInfo" class="labelMesInfo">Violència de gènere: </p>
+        <p id="labelExtra" class="labelExtra">
+          
+
+          Víctima a (la gestió la fa la ORD): <br>
+          <b>SAV GUB</b> si està dins d'horari de SAV (7h-22h)
+          <br>
+          <b>GAV CME</b> si està fora d'horari de GAV. Si CME no te agenda se la pot citar a partir de les 10h a <b>SAV GUB</b> mtijançant N102.
+
+          <br><br>
+          
+          Subjecte actiu: home<br>
+          Subjecte passiu: dona<br>
+          En el cas de persones no cisgènere es tindrà en compte el gènere legal.<br>
+          <br>
+          Relació:<br>
+          La dona és o ha estat cònjugue (o relació anàloga) amb o sense convivència.<br>
+          <br>
+          Inclou:
+          <ul>
+          <li>Violència física o psicològica.</li>
+          <li>Agressions a la llibertat sexual.</li>
+          <li>Amenaces.</li>
+          <li>Coaccions.</li>
+          <li>Privació de llibertat.</li>
+          </ul>
+        </p>
+      </td></tr>
+
+      <tr><td>
+        <p id="labelMesInfo" class="labelMesInfo">Violència domèstica:</p>
+        <p id="labelExtra" class="labelExtra">
+            Víctima a <b>GAV CME</b><br><br>
+
+
+            Relació amb el sujecte passiu:
+            <ul>
+              <li>És o ha estat cònjugue (o relació anàloga) amb o sense convivència.</li>
+              <li>Descendents, ascendents o germans (o afins) propis o del cònjugue o convivent.</li>
+              <li>Menors o persones necesitades d'especial protecció amb convivència o sota la guarda del cònjugue o convivent.</li>
+              <li>Qualsevol persona que integri el núcli de convivència familiar.</li>
+              <li>Persones especialment vulnerables sota custodia de centres públics o privats.</li>
+            </ul>
+
+<p id="labelExtra" class="labelExtra">
+                        Inclou:
+            
+            <ul>
+              <li>Violència física o psicològica.</li>
+              <li>Agressions a la llibertat sexual.</li>
+              <li>Amenaces.</li>
+              <li>Coaccions.</li>
+              <li>Privació de llibertat.</li>
+            </ul>
+
+        </p>
+      </td></tr>
+
+    </table>
+  </div>
+ 
+
+
+</body>
+</html>
