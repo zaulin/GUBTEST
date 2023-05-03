@@ -41,7 +41,45 @@
 <meta name="apple-mobile-web-app-title" content="GUB">
 
 </head>
-<body onload="pageonload()" style="margin: 0;padding: 0">
+<body onload="pageonload()" style="margin: 0;padding: 0;">
+
+<div id="overlay">
+  <div id="textOverlay">
+    <table id="overlayTable">
+      <tr style="background-color: #064a9d;">
+        <td style="text-align:center; color: white; font-weight: bold;" id="popUpNum">INFORMACIÓ</td>
+      </tr>
+      <tr>
+        <td>
+          <p>La llei obliga a informar-te que aquesta pàgina fa servir galetes (cookies) per funcionar:</p>
+          <p><b>Galetes de tercers:</b></p>
+          <ul>
+            <li>Ens permeten quantificar el nombre d'usuaris i fer l'anàlisis estadístic de la utilització de la web.</li>
+          </ul>
+          <p><b>Galetes tècniques:</b></p>
+          <ul>
+            <li>Es fan servir per a poder guardar els favorits a l'apartat de denúncies.</li>
+          </ul>
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Pots consultar la política de galetes <a href="galetes/index.html">aquí</a>.
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">
+          <br>
+          <button class="btnPlain" onclick="acceptCookiesClick()">Acceptar les galetes</button>
+          <br><br>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
     <div id="loadingBlack">
       <div id="loadingIn">
         <div class="loader">
@@ -73,20 +111,13 @@
 </tr>
 <tr>
   <td align="center" style="padding-top: 20px">
-    <table onclick="clickActes()" class="tableBoton">
-      <tr class="trImagen"><td align="center"><img src="img/actes.png" height="50px"></td></tr>
-      <tr class="trTexto"><td align="center" class="ButtonText">Actes</td></tr>
+    <table onclick="clickActuacions()" class="tableBoton">
+      <tr class="trImagen"><td align="center"><img src="img/actuacions.png" height="50px"></td></tr>
+      <tr class="trTexto"><td align="center" class="ButtonText">Actuacions</td></tr>
     </table>
   </td>
 </tr>
-<tr>
-  <td align="center" style="padding-top: 20px">
-    <table onclick="clickTrixis()" class="tableBoton">
-      <tr class="trImagen"><td align="center"><img src="img/trixis.png" height="50px"></td></tr>
-      <tr class="trTexto"><td align="center" class="ButtonText">Trixis</td></tr>
-    </table>
-  </td>
-</tr>
+
 <tr>
   <td align="center" style="padding-top: 20px">
     <table onclick="clickPermisos()" class="tableBoton">
@@ -95,6 +126,25 @@
     </table>
   </td>
 </tr>
+
+<!--tr>
+  <td align="center" style="padding-top: 20px">
+    <table onclick="clickTrixis()" class="tableBoton">
+      <tr class="trImagen"><td align="center"><img src="img/trixis.png" height="50px"></td></tr>
+      <tr class="trTexto"><td align="center" class="ButtonText">Codis BSM</td></tr>
+    </table>
+  </td>
+</tr-->
+
+<tr>
+  <td align="center" style="padding-top: 20px">
+    <table onclick="clickActes()" class="tableBoton">
+      <tr class="trImagen"><td align="center"><img src="img/actes.png" height="50px"></td></tr>
+      <tr class="trTexto"><td align="center" class="ButtonText">Actes</td></tr>
+    </table>
+  </td>
+</tr>
+
 <tr>
   <td align="center" style="padding-top: 20px">
     <table onclick="clickVTC()" class="tableBoton">
@@ -111,9 +161,30 @@
     </table>
   </td>
 </tr>
+
+<tr>
+  <td align="center" style="padding-top: 20px">
+    <table onclick="clickEnlaces()" class="tableBoton">
+      <tr class="trImagen"><td align="center"><img src="img/enlaces.png" height="50px"></td></tr>
+      <tr class="trTexto"><td align="center" class="ButtonText">Enllaços</td></tr>
+    </table>
+  </td>
+</tr>
+
 </table>
+<br><br>
 
  </div>
+ 
+<div id="galetesDiv"style="position: relative; bottom:0px;">
+ <table class="cabecera" >
+  <tr>
+    <td style="color:#ffffff">
+    <a href="galetes/index.html" style="color:#ffffff; text-decoration: none; margin-left:10px">Política de galetes</a><br><br>
+    </td>
+  </tr>
+</table>
+</div>
 
 </body>
 </html>
